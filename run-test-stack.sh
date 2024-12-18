@@ -4,4 +4,4 @@
 
 root="$PWD"
 cd testsuite
-stack run -- "$root/src"
+stack run -- "$root"

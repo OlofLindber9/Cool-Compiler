@@ -4,6 +4,7 @@
 
 /dist-newstyle/
 /.stack-work/
+/old/
 *.hi
 *.o
 stack.yaml.lock
