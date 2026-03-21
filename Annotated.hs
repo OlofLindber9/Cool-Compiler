@@ -45,6 +45,8 @@ data Stm
     | SWhile Exp Stm
     | SBlock [Stm]
     | SIfElse Exp Stm Stm
+    | SThrow Exp
+    | STryCatch [Stm] Type Id [Stm]
   deriving (Eq, Ord, Show, Read)
 
 data Exp
@@ -104,6 +106,8 @@ instance Print Stm where
     SWhile exp stm -> prPrec i 0 (concatD [doc (showString "while"), doc (showString "("), prt 0 exp, doc (showString ")"), prt 0 stm])
     SBlock stms -> prPrec i 0 (concatD [doc (showString "{"), prt 0 stms, doc (showString "}")])
     SIfElse exp stm1 stm2 -> prPrec i 0 (concatD [doc (showString "if"), doc (showString "("), prt 0 exp, doc (showString ")"), prt 0 stm1, doc (showString "else"), prt 0 stm2])
+    SThrow exp -> prPrec i 0 (concatD [doc (showString "throw"), prt 0 exp, doc (showString ";")])
+    STryCatch stms1 type_ id_ stms2 -> prPrec i 0 (concatD [doc (showString "try"), doc (showString "{"), prt 0 stms1, doc (showString "}"), doc (showString "catch"), doc (showString "("), prt 0 type_, prt 0 id_, doc (showString ")"), doc (showString "{"), prt 0 stms2, doc (showString "}")])
 
 instance Print [Stm] where
   prt _ [] = concatD []

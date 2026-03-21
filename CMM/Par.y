@@ -96,6 +96,9 @@ import CMM.Lex
   '{'      { PT _ (TS _ 29) }
   '||'     { PT _ (TS _ 30) }
   '}'      { PT _ (TS _ 31) }
+  'catch'  { PT _ (TS _ 32) }
+  'throw'  { PT _ (TS _ 33) }
+  'try'    { PT _ (TS _ 34) }
   L_doubl  { PT _ (TD $$)   }
   L_integ  { PT _ (TI $$)   }
   L_Id     { PT _ (T_Id $$) }
@@ -139,6 +142,8 @@ Stm
   | 'while' '(' Exp ')' Stm { CMM.Abs.SWhile $3 $5 }
   | '{' ListStm '}' { CMM.Abs.SBlock $2 }
   | 'if' '(' Exp ')' Stm 'else' Stm { CMM.Abs.SIfElse $3 $5 $7 }
+  | 'throw' Exp ';' { CMM.Abs.SThrow $2 }
+  | 'try' '{' ListStm '}' 'catch' '(' Type Id ')' '{' ListStm '}' { CMM.Abs.STryCatch $3 $7 $8 $11 }
 
 ListStm :: { [CMM.Abs.Stm] }
 ListStm : {- empty -} { [] } | Stm ListStm { (:) $1 $2 }

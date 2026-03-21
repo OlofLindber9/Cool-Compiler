@@ -44,8 +44,9 @@ data Code
     | Mul Type MulOp
     | Add Type AddOp
 
-    | I2D 
+    | I2D
     | Comment String
+    | Raw String Int  -- ^ Raw JVM instruction with explicit stack delta.
 
     deriving (Show)
 
@@ -116,7 +117,8 @@ instance Size Code where
         Mul t _         -> -(size t)
         Add t _         -> -(size t)
         I2D             -> 1
-        Comment _       -> 0 
+        Comment _       -> 0
+        Raw _ n         -> n
 
 -- | Print something in Jasmin-syntax.
 
@@ -199,6 +201,7 @@ instance ToJVM Code where
         I2D -> "i2d"
 
         Comment c -> c
+        Raw s _   -> s
 
 prefix :: Type -> String
 prefix t = case t of

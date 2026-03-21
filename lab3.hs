@@ -8,6 +8,7 @@ import System.Environment (getArgs, getExecutablePath)
 import System.Exit        (exitFailure)
 import System.FilePath    (dropExtension, replaceExtension, splitFileName, takeDirectory, (</>))
 import System.Process     (callProcess)
+import System.Directory   (copyFile, doesFileExist)
 
 import CMM.Par                  (pProgram, myLexer)
 import qualified CMM.Abs   as A (Program)
@@ -62,6 +63,8 @@ compile file tree = do
   -- Call jasmin, but ask it to place .class file in dir
   -- rather than in the current directory.
   callJasmin ["-d", dir, jfile]
+  -- Copy runtime support classes to the output directory.
+  copyRuntimeClasses dir
 
 -- | Invoke the external `jasmin` assembler with the given args and wait for it to finish.
 
@@ -77,3 +80,19 @@ callJasmin args = do
   -- Note: If the `jasmin` executable is in your PATH, you can replace
   -- the lines above by the simpler:
   -- callProcess "jasmin" args
+
+-- | Copy runtime support classes (Runtime, CMMException) to the output directory.
+--   They live in the same directory as the lab3 executable and jasmin.jar.
+
+copyRuntimeClasses :: FilePath -> IO ()
+copyRuntimeClasses outDir = do
+  directory <- takeDirectory <$> getExecutablePath
+  let classes = ["Runtime.class", "CMMException.class"]
+  mapM_ (copyIfExists directory outDir) classes
+
+copyIfExists :: FilePath -> FilePath -> FilePath -> IO ()
+copyIfExists srcDir dstDir name = do
+  let src = srcDir </> name
+      dst = dstDir </> name
+  exists <- doesFileExist src
+  if exists then copyFile src dst else return ()

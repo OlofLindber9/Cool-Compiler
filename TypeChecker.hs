@@ -105,11 +105,23 @@ checkStm sig returnType cxt = \case
     e' <- checkExp sig cxt e Type_bool
     let newCxt = Map.empty
     let cxt1 = newCxt : cxt
-    (s1', cxt') <- checkStm sig returnType cxt1 s1 
+    (s1', cxt') <- checkStm sig returnType cxt1 s1
     let cxt2 = newCxt : cxt
-    (s2', cxt') <- checkStm sig returnType cxt2 s2 
+    (s2', cxt') <- checkStm sig returnType cxt2 s2
     return (A.SIfElse e' s1' s2', cxt)
-    
+
+  SThrow e -> do
+    e' <- checkExp sig cxt e Type_int
+    return (A.SThrow e', cxt)
+
+  STryCatch tryStms t x catchStms -> do
+    when (t /= Type_int) $ throwError "catch variable must be of type int"
+    let tryCxt = Map.empty : cxt
+    (tryStms', _) <- checkStms sig returnType tryCxt tryStms
+    catchCxt <- addVar x t (Map.empty : cxt)
+    (catchStms', _) <- checkStms sig returnType catchCxt catchStms
+    return (A.STryCatch tryStms' t x catchStms', cxt)
+
   s -> nyi s
 
 checkExp :: Sig -> Cxt -> Exp -> Type -> Either TypeError A.Exp

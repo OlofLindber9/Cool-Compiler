@@ -54,6 +54,7 @@ executable lab3
     , base       >= 4.11.1.0 && < 5
     , array      >= 0.5.2.0  && < 0.6
     , containers >= 0.5.11.0 && < 0.8
+    , directory  >= 1.3.1.0  && < 1.4
     , filepath   >= 1.4.2    && < 1.6
     , mtl        >= 2.2.2    && < 2.4
     , process    >= 1.6.3.0  && < 1.7

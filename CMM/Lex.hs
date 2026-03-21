@@ -6697,10 +6697,10 @@ resWords =
           (b "<=" 14 (b "<" 13 N N) (b "=" 15 N N))))
     (b "int" 24
        (b "double" 20
-          (b ">=" 18 (b ">" 17 N N) (b "bool" 19 N N))
+          (b ">=" 18 (b ">" 17 N N) (b "bool" 19 N (b "catch" 32 N N)))
           (b "false" 22 (b "else" 21 N N) (b "if" 23 N N)))
        (b "while" 28
-          (b "true" 26 (b "return" 25 N N) (b "void" 27 N N))
+          (b "true" 26 (b "return" 25 N (b "throw" 33 N N)) (b "void" 27 (b "try" 34 N N) N))
           (b "||" 30 (b "{" 29 N N) (b "}" 31 N N))))
   where
   b s n = B bs (TS bs n)

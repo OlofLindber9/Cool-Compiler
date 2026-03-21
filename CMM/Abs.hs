@@ -27,6 +27,8 @@ data Stm
     | SWhile Exp Stm
     | SBlock [Stm]
     | SIfElse Exp Stm Stm
+    | SThrow Exp
+    | STryCatch [Stm] Type Id [Stm]
   deriving (C.Eq, C.Ord, C.Show, C.Read)
 
 data Exp

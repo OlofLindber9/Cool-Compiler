@@ -31,7 +31,7 @@ type Cxt      = [CxtBlock]
 type CxtBlock = [(Id, Type)]
 
 -- | State for compiling a function 
-data St = St 
+data St = St
    { sig :: Sig
    , cxt :: Cxt
    , limitLocals :: Int
@@ -39,6 +39,7 @@ data St = St
    , limitStack :: Int
    , nextLabel :: Label
    , output :: Output
+   , catches :: [String]  -- ^ Accumulated .catch directives for exception table.
    }
 
 initSt :: Sig -> St
@@ -50,6 +51,7 @@ initSt s = St
   , limitStack = 0
   , nextLabel = L 0
   , output = []
+  , catches = []
   }
 
 -- | Compiling a definition produces a traversed sequence of instructions. 
@@ -125,25 +127,27 @@ compile name (PDefs defs) =
 indent :: String -> String
 indent s = if null s then s else "\t" ++ s
 
-compileDef :: Sig -> Def -> [String] 
+compileDef :: Sig -> Def -> [String]
 compileDef sig0 def@(DFun t f args ss) = concat
     -- Output function header.
     [ [ ""
     , ".method public static " ++ toJVM (Fun f $ funType def)
     ]
-    -- Output limits. 
-    , [ ".limit locals " ++ show (limitLocals st) 
-    , ".limit stack " ++ show (limitStack st ) 
+    -- Output limits.
+    , [ ".limit locals " ++ show (limitLocals st)
+    , ".limit stack " ++ show (limitStack st)
     ]
-    -- Output code. 
-    , map (indent . toJVM) $ reverse (output st )
+    -- Output code.
+    , map (indent . toJVM) $ reverse (output st)
+    -- Output exception table (.catch directives).
+    , catches st
     -- Output function footer.
-    , [ "" 
-    , ".end method" 
+    , [ ""
+    , ".end method"
     ]
     ]
     where
-    st = execState (compileFun t args ss) $ initSt sig0 
+    st = execState (compileFun t args ss) $ initSt sig0
 
 -- | Compile a function, to be called in initial environment.
 
@@ -220,6 +224,39 @@ compileStm s0 = do
       emit $ Label false
       compileBlock [s2] 
       emit $ Label done 
+
+    SThrow e -> do
+      -- new CMMException(e); athrow
+      emit $ Raw "new CMMException" 1
+      emit $ Raw "dup" 1
+      compileExp e
+      emit $ Raw "invokespecial CMMException/<init>(I)V" (-2)
+      emit $ Raw "athrow" (-1)
+
+    STryCatch tryStms t catchId catchStms -> do
+      startLbl   <- newLabel
+      handlerLbl <- newLabel
+      endLbl     <- newLabel
+      -- try block
+      emit $ Label startLbl
+      compileBlock tryStms
+      emit $ Goto endLbl
+      -- catch handler: JVM puts exception on stack (1 slot)
+      modify $ \st -> st { currentStack = 1 }
+      emit $ Label handlerLbl
+      emit $ Raw "getfield CMMException/value I" 0
+      -- store caught int into catch variable
+      newBlock
+      newVar catchId t
+      (a, _) <- lookupVar catchId
+      emit $ Store t a
+      mapM_ compileStm catchStms
+      popBlock
+      emit $ Label endLbl
+      -- register exception table entry
+      addCatch $ ".catch CMMException from " ++ toJVM startLbl
+              ++ " to " ++ toJVM handlerLbl
+              ++ " using " ++ toJVM handlerLbl
 
     s -> error $ "Not yet implemented: compileStm " ++ printTree s
 
@@ -379,3 +416,7 @@ newBlock = modify $ \ st@St{ cxt = (c) } -> st { cxt = []:c }
 
 popBlock :: Compile ()
 popBlock = modify $ \ st@St{ cxt = (_:bs) } -> st { cxt = bs }
+
+-- | Append a .catch directive to the exception table of the current method.
+addCatch :: String -> Compile ()
+addCatch s = modify $ \st -> st { catches = catches st ++ [s] }

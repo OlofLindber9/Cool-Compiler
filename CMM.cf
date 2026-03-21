@@ -27,6 +27,8 @@ SReturn.   Stm    ::= "return" Exp ";" ;
 SWhile.    Stm    ::= "while" "(" Exp ")" Stm ;
 SBlock.    Stm    ::= "{" [Stm] "}" ;
 SIfElse.   Stm    ::= "if" "(" Exp ")" Stm "else" Stm ;
+SThrow.    Stm    ::= "throw" Exp ";" ;
+STryCatch. Stm    ::= "try" "{" [Stm] "}" "catch" "(" Type Id ")" "{" [Stm] "}" ;
 terminator Stm "" ;
 
 -- # Expressions.
