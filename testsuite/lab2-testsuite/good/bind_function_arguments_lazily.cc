@@ -3,8 +3,8 @@ int snd (int x, int y) {
 }
 
 int main () {
-  int x = 0;
-  int r = snd(1,x);
+  let int x = 0;
+  let int r = snd(1,x);
   printInt(r); // Should print 0
   return r;
 }

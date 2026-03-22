@@ -1,4 +1,4 @@
 int main () {
-  int x = false || 45;
+  let int x = false || 45;
   return 0;
 }

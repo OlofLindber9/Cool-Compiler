@@ -1,6 +1,6 @@
 int main () {
 	if (3.0 < 5)
-		int y;
+		let int y;
 	else {}
 	return 0;
 }

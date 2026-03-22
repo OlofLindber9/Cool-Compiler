@@ -2,9 +2,9 @@
 
 int main ()
 {
-  int sum = 0 ;
-  int num = 0 ;
-  int x ;
+  let int sum = 0 ;
+  let int num = 0 ;
+  let int x ;
   while ((x = readInt()) != 0) {
     sum = sum + x ;
     num++ ;

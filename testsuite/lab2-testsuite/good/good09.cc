@@ -1,6 +1,6 @@
 int main () 
 {
-  int i = readInt() ; // 5
+  let int i = readInt() ; // 5
 
   printInt(i) ;   //5
   printInt(i++) ; //5

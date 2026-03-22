@@ -1,6 +1,6 @@
 int main() {
-  int j = 22;
-  int k = 23;
+  let int j = 22;
+  let int k = 23;
   ++j;
   printInt(j);
   printInt(++k);

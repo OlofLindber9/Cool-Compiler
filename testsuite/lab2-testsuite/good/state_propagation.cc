@@ -1,7 +1,7 @@
 int id(int x) { return x; }
 
 int main() {
-  int z = 0;
+  let int z = 0;
 
   // Function calls
   id(++z);

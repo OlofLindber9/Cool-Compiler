@@ -1,6 +1,6 @@
 double dfac(double n)
 {
-  double f ;
+  let double f ;
   if (n == 0.0)
     f = 1.0;
   else
@@ -9,10 +9,10 @@ double dfac(double n)
 }
 
 int main() {
-  double r ; // just to test blocks
+  let double r ; // just to test blocks
   {
-    int n = 10;
-    int r = 1;
+    let int n = 10;
+    let int r = 1;
     while (n>0) {
       r = r * n;
       n = n - 1;

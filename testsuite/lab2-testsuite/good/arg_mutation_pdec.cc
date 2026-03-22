@@ -3,7 +3,7 @@ void cdec(int c) {
 }
 
 int main () {
-  int c = 1;
+  let int c = 1;
   cdec(--c);
   printInt(c);
 

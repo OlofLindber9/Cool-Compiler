@@ -3,10 +3,10 @@ bool i_want_a_bool(int not_a_bool) {
 }
 
 int main () {
-  int var = 1;
+  let int var = 1;
 
   {
-    bool var = i_want_a_bool(var);
+    let bool var = i_want_a_bool(var);
   }
 
   return 0;

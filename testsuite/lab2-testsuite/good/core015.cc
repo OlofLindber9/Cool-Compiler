@@ -1,7 +1,7 @@
 /* parity of positive integers by recursion */
 
 int ev (int y) {
-  int e ;
+  let int e ;
   if (y > 0)
     e = ev (y-2) ;
   else

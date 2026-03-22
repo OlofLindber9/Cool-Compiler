@@ -11,8 +11,8 @@ void printBool(bool b) {
 }
 
 int main() {
-  double big = 1.5;
-  double small = 0.5;
+  let double big = 1.5;
+  let double small = 0.5;
 
   printBool(big == big);
   printBool(big != big);

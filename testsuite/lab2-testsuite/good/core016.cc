@@ -1,7 +1,7 @@
 /* parity of positive integers by loop */
 
 int main () {
-  int y = 17;
+  let int y = 17;
   while (y > 0)
     y = y - 2;
   if (y < 0) {

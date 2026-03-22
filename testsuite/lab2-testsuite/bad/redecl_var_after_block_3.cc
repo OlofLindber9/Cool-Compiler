@@ -1,8 +1,8 @@
 int main() {
-	int x;
+	let int x;
 	{
-		int y;
+		let int y;
 	}
-	int x;
+	let int x;
 	return 0;
 }

@@ -1,9 +1,3 @@
-# Programming Language Technology (Chalmers DAT151 / GU DIT231)
-# (C) 2022-24 Andreas Abel
-# All rights reserved.
-
-# Makefile for PLT lab 3 in Haskell
-
 ## Variables
 ###########################################################################
 

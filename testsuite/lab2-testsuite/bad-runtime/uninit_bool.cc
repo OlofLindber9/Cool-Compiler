@@ -1,6 +1,6 @@
 int main() {
-  bool a;
-  bool b = a && true;
+  let bool a;
+  let bool b = a && true;
 
   return 0;
 }

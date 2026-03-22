@@ -1,5 +1,5 @@
 int rRrrrRrrrReturn() {
-  int i = 0;
+  let int i = 0;
 
   while (i++ < 5) {
     return 71;

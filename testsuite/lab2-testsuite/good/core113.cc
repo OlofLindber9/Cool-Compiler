@@ -1,7 +1,7 @@
 int f(int x) {
-  int y ;
+  let int y ;
   if (x < 100) {
-    int x = 91;
+    let int x = 91;
     y = x;
   } else {
     y = x;

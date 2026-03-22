@@ -3,7 +3,7 @@
 // _per subexpression_, e.g. the left subexpression of conjunction.
 
 int main () {
-  bool b =
+  let bool b =
     true &&
     true &&
     true &&

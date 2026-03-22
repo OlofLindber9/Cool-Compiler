@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -fno-warn-unused-binds -fno-warn-missing-signatures #-}
 {-# LANGUAGE CPP #-}
-{-# LINE 4 "CMM\Lex.x" #-}
-{-# OPTIONS -Wno-incomplete-patterns #-}
+{-# LINE 4 "CMM/Lex.x" #-}
+{-# OPTIONS -fno-warn-incomplete-patterns #-}
 {-# OPTIONS_GHC -w #-}
 
 {-# LANGUAGE PatternSynonyms #-}
@@ -6584,7 +6584,7 @@ alexRightContext IBOX(sc) user__ _ _ input__ =
         -- match when checking the right context, just
         -- the first match will do.
 #endif
-{-# LINE 67 "CMM\Lex.x" #-}
+{-# LINE 67 "CMM/Lex.x" #-}
 -- | Create a token with position.
 tok :: (String -> Tok) -> (Posn -> String -> Token)
 tok f p = PT p . f
@@ -6687,21 +6687,22 @@ eitherResIdent tv s = treeFind resWords
 -- | The keywords and symbols of the language organized as binary search tree.
 resWords :: BTree
 resWords =
-  b "==" 16
-    (b "," 8
-       (b ")" 4
-          (b "&&" 2 (b "!=" 1 N N) (b "(" 3 N N))
-          (b "+" 6 (b "*" 5 N N) (b "++" 7 N N)))
-       (b ";" 12
-          (b "--" 10 (b "-" 9 N N) (b "/" 11 N N))
-          (b "<=" 14 (b "<" 13 N N) (b "=" 15 N N))))
-    (b "int" 24
-       (b "double" 20
-          (b ">=" 18 (b ">" 17 N N) (b "bool" 19 N (b "catch" 32 N N)))
-          (b "false" 22 (b "else" 21 N N) (b "if" 23 N N)))
-       (b "while" 28
-          (b "true" 26 (b "return" 25 N (b "throw" 33 N N)) (b "void" 27 (b "try" 34 N N) N))
-          (b "||" 30 (b "{" 29 N N) (b "}" 31 N N))))
+  b ">=" 18
+    (b "-" 9
+       (b "*" 5
+          (b "(" 3 (b "&&" 2 (b "!=" 1 N N) N) (b ")" 4 N N))
+          (b "++" 7 (b "+" 6 N N) (b "," 8 N N)))
+       (b "<=" 14
+          (b ";" 12 (b "/" 11 (b "--" 10 N N) N) (b "<" 13 N N))
+          (b "==" 16 (b "=" 15 N N) (b ">" 17 N N))))
+    (b "return" 27
+       (b "false" 23
+          (b "double" 21
+             (b "catch" 20 (b "bool" 19 N N) N) (b "else" 22 N N))
+          (b "int" 25 (b "if" 24 N N) (b "let" 26 N N)))
+       (b "while" 32
+          (b "try" 30 (b "true" 29 (b "throw" 28 N N) N) (b "void" 31 N N))
+          (b "||" 34 (b "{" 33 N N) (b "}" 35 N N))))
   where
   b s n = B bs (TS bs n)
     where

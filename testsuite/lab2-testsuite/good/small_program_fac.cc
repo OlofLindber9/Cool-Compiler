@@ -1,6 +1,6 @@
 int fac (int a) {
-  int r;
-  int n;
+  let int r;
+  let int n;
   r = 1;
   n = a;
   while (n > 0)

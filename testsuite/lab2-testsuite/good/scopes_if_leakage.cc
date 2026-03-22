@@ -1,17 +1,17 @@
 int main () {
-  bool var = true;
+  let bool var = true;
 
   if (true) int var = 1; else int var = 0;
 
   // Make sure var is still a bool
   var == true;
-  bool var1 = var;
+  let bool var1 = var;
 
   if (false) int var = 1; else int var = 0;
 
   // Make sure var is still a bool
   var == true;
-  bool var2 = var;
+  let bool var2 = var;
 
   return 0;
 }

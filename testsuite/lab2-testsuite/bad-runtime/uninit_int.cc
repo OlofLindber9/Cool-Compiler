@@ -1,4 +1,4 @@
 int main() {
-  int x;
+  let int x;
   return x;
 }

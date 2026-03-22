@@ -1,10 +1,10 @@
 int main () {
-	int n, i;
+	let int n, i;
 	n = readInt();
 	i = 2;
 	while (i <= n) {
-		bool iPrime = true;
-		int j = 2;
+		let bool iPrime = true;
+		let int j = 2;
 		while (j*j <= i && iPrime) {
 			if ((i / j) * j == i) {
 				iPrime = false;

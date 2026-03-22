@@ -3,7 +3,7 @@ void nop() {
 }
 
 int main() {
-        int x = 5;
+        let int x = 5;
         if (false) nop(); else x = 7;
         printInt(x);
         return 0;

@@ -1,8 +1,4 @@
--- Programming Language Technology (Chalmers DAT151 / GU DIT231)
--- (C) 2022-24 Andreas Abel
--- All rights reserved.
-
-{-# OPTIONS_GHC -Wno-unused-imports #-} -- Turn off unused import warning off in stub
+{-# OPTIONS_GHC -Wno-unused-imports #-}
 
 -- | Compiler for C--, producing symbolic JVM assembler.
 

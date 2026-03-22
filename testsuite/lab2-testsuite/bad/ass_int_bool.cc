@@ -1,5 +1,5 @@
 int main() {
-        int x;
+        let int x;
         x = true;
         return 1;
 }

@@ -1,5 +1,5 @@
 int main () {
-	int i = 1;
+	let int i = 1;
 	printInt(i);
 	true || i++ != 45;
 	printInt(i);
@@ -9,7 +9,7 @@ int main () {
 	printInt(i);
 	false && i++ > 0;
 	printInt(i);
-	int j = 0;
+	let int j = 0;
       // Lab 3 only comment:
       // Initialization of j would not be needed as the access of j
       // is in dead code, if compiled correctly.

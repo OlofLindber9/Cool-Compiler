@@ -1,6 +1,6 @@
 int main() {
   {
-    int x = 0;
+    let int x = 0;
     return x;
   }
 }

@@ -1,5 +1,5 @@
 int main () {
-	int lo,hi,mx ;
+	let int lo,hi,mx ;
 
         lo = 1 ;
 	hi = lo ;

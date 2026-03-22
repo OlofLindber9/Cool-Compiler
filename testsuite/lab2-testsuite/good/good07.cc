@@ -1,8 +1,8 @@
 int main ()
 {
-  int x = readInt () ;
+  let int x = readInt () ;
 
-  int d = x/2 ;
+  let int d = x/2 ;
 
   while (d > 1) {
     if (d * (x/d) == x)

@@ -3,7 +3,7 @@ bool foo(int x) {
         return false;
     } else {}
 
-    bool b = true;
+    let bool b = true;
 
     printInt(x);
 

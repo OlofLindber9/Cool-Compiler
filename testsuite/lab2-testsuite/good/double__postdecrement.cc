@@ -1,6 +1,6 @@
 int main() {
-  double j = 22.5;
-  double k = 23.5;
+  let double j = 22.5;
+  let double k = 23.5;
   j--;
   printDouble(j);
   printDouble(k--);

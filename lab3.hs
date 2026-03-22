@@ -1,8 +1,4 @@
--- Programming Language Technology (Chalmers DAT151 / GU DIT231)
--- (C) 2022-24 Andreas Abel
--- All rights reserved.
-
--- | lab3: Compiler from C-- to JAVA .class file.
+-- | Compiler from C-- to JVM .class file.
 
 import System.Environment (getArgs, getExecutablePath)
 import System.Exit        (exitFailure)

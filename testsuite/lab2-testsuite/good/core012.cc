@@ -1,8 +1,8 @@
 /* Test arithmetic and comparisons */
 
 int main() {
-    int x = 56;
-    int y = 23;
+    let int x = 56;
+    let int y = 23;
     printInt(x+y);
     printInt(x-y);
     printInt(x*y);

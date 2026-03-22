@@ -16,13 +16,13 @@ void printBool(bool b) {
 }
 
 bool neg(bool x) {
-  bool r ;
+  let bool r ;
   if (x) r = false; else r = true;
   return r ;
 }
 
 bool eq_bool(bool x, bool y) {
-  bool r ;
+  let bool r ;
   if (x)
     r = y;
   else
@@ -35,7 +35,7 @@ bool implies(bool x, bool y) {
 }
 
 int main () {
-  int x = 4;
+  let int x = 4;
 
   if (3 <= x && 4 != 2 && true) {
     printBool(true);

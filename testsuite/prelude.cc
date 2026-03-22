@@ -32,7 +32,7 @@ void printDouble (double d) {
 // Read an integer from standard input.
 
 int readInt () {
-  int result;
+  let int result;
   scanf ("%d\n", &result);
   return result;
 }
@@ -40,7 +40,7 @@ int readInt () {
 // Read a double from standard input.
 
 double readDouble() {
-  double result;
+  let double result;
   scanf ("%lf\n", &result);
   return result;
 }

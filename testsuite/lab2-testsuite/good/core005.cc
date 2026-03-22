@@ -1,6 +1,6 @@
 int main () {
-  int x;
-  int y = 56;
+  let int x;
+  let int y = 56;
   if (y + 45 <= 2) {
     x = 1;
   } else {

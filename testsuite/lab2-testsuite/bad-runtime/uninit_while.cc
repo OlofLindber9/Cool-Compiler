@@ -1,14 +1,14 @@
 int main() {
-  int i = 0;
+  let int i = 0;
 
   while (i != 10) {
-    int j;
+    let int j;
 
     if (i == 1)
       j = 0;
     else
       i = 10;
 
-    int k = j;  // Variable j is not initialized here.
+    let int k = j;  // Variable j is not initialized here.
   }
 }

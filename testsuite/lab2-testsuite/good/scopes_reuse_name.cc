@@ -1,5 +1,5 @@
 int main () {
-  int x = 0;
+  let int x = 0;
 
   if (true)
     { int x = 1; }
@@ -8,7 +8,7 @@ int main () {
   printInt(x);
 
   if (true) {
-    int x;
+    let int x;
     x = 2;
   }
   else
@@ -24,34 +24,34 @@ int main () {
   if (false)
     {}
   else {
-    int x;
+    let int x;
     x = 4;
   }
   printInt(x);
 
   {
-    int i = 0;
+    let int i = 0;
     while (i++ < 1)
       { int x = 5; }
     printInt(x);
   }
 
   {
-    int i = 0;
+    let int i = 0;
     while (i++ < 1) {
-      int x;
+      let int x;
       x = 6;
     }
     printInt(x);
   }
 
   {
-    int x = 7;
+    let int x = 7;
   }
   printInt(x);
 
   {
-    int x;
+    let int x;
     x = 8;
   }
   printInt(x);

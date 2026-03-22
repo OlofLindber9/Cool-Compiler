@@ -1,5 +1,5 @@
 int main() {
-  int x = 5;
+  let int x = 5;
 
   if (++x == x++)
     printInt(x);

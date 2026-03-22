@@ -1,5 +1,5 @@
 int bar(int x) {
-	int x;
+	let int x;
         return x;
 }
 

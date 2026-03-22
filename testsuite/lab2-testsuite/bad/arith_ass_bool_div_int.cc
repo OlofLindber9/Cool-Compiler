@@ -1,4 +1,4 @@
 int main () {
-  int x = true / 5;
+  let int x = true / 5;
   return x;
 }

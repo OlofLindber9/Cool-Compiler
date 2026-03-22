@@ -1,5 +1,5 @@
 int main() {
-  int j = 4;
+  let int j = 4;
 
   {
 	printInt(j);

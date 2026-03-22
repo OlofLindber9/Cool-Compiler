@@ -1,5 +1,5 @@
 int main() {
-  int x;
+  let int x;
 
   if ((x = 1) == 1) {} else {}
 

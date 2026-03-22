@@ -1,8 +1,4 @@
--- Programming Language Technology (Chalmers DAT151 / GU DIT231)
--- (C) 2022-24 Andreas Abel
--- All rights reserved.
-
--- Grammar for small C/C++/Java-like language called C-- (C minus minus).
+-- Grammar for small C/java-like Programming Language. Very cool.
 
 -- # Programs are lists of function definitions.
 
@@ -21,8 +17,8 @@ separator  Arg "," ;
 -- # Statements.
 
 SExp.      Stm    ::= Exp ";" ;
-SDecls.    Stm    ::= Type [Id] ";" ;
-SInit.     Stm    ::= Type Id "=" Exp ";" ;
+SDecls.    Stm    ::= "let" Type [Id] ";" ;
+SInit.     Stm    ::= "let" Type Id "=" Exp ";" ;
 SReturn.   Stm    ::= "return" Exp ";" ;
 SWhile.    Stm    ::= "while" "(" Exp ")" Stm ;
 SBlock.    Stm    ::= "{" [Stm] "}" ;

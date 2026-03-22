@@ -1,7 +1,3 @@
--- Programming Language Technology (Chalmers DAT151 / GU DIT231)
--- (C) 2022-24 Andreas Abel
--- All rights reserved.
-
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 -- | The annotated version of abstract syntax of language CMM.
@@ -16,19 +12,6 @@ module Annotated (
 
 import CMM.Abs (Id(..), Type(..), Arg(..), CmpOp(..), IncDecOp(..), MulOp(..), AddOp(..), BoolLit(..) )
 import CMM.Print
-
--- The following is a copy of content from CMM.Abs.
---
--- TODO: Change this to type-annotated syntax trees.
---
--- In essence this amounts to:
---
---   * Adding 'Type' fields to some of the constructors.
---   * Possibly adding an expression constructor to convert from 'int' to 'double'.
---
--- However, you might want to also restructure expressions (and statements etc.)
--- to better fit the need of the interpreter.
--- (E.g., 'EMul' and 'EAdd' could be fused to 'EArithOp' etc.)
 
 data Program = PDefs [Def]
   deriving (Eq, Ord, Show, Read)
@@ -67,13 +50,7 @@ data Exp
   deriving (Eq, Ord, Show, Read)
 
 
--- The following is a copy of the generated printer CMM.Print,
--- implementing 'printTree' for the annotated syntax.
--- (Could be useful for debugging.)
---
--- TODO: Update this as you modify the data types above.
--- If you do not want 'printTree' for the annotated syntax,
--- you can discard this code.
+-- | 'printTree' instances for the annotated syntax (useful for debugging).
 
 instance Print Program where
   prt i = \case
@@ -99,8 +76,8 @@ instance Print [Def] where
 instance Print Stm where
   prt i = \case
     SExp exp _ -> prPrec i 0 (concatD [prt 0 exp, doc (showString ";")])
-    SDecls type_ ids -> prPrec i 0 (concatD [prt 0 type_, prt 0 ids, doc (showString ";")])
-    SInit type_ id_ exp -> prPrec i 0 (concatD [prt 0 type_, prt 0 id_, doc (showString "="), prt 0 exp, doc (showString ";")])
+    SDecls type_ ids -> prPrec i 0 (concatD [doc (showString "let"), prt 0 type_, prt 0 ids, doc (showString ";")])
+    SInit type_ id_ exp -> prPrec i 0 (concatD [doc (showString "let"), prt 0 type_, prt 0 id_, doc (showString "="), prt 0 exp, doc (showString ";")])
     SDecl type_ id_ -> prPrec i 0 (concatD [prt 0 type_, prt 0 id_, doc (showString ";")])
     SReturn type_ exp -> prPrec i 0 (concatD [doc (showString "return"), prt 0 type_, prt 0 exp, doc (showString ";")]) --Added type
     SWhile exp stm -> prPrec i 0 (concatD [doc (showString "while"), doc (showString "("), prt 0 exp, doc (showString ")"), prt 0 stm])

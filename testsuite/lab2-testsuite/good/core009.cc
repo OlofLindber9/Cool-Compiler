@@ -5,7 +5,7 @@ int foo() {
 }
 
 int main() {
- int x = foo();
+ let int x = foo();
  printInt(x);
  return 0 ;
 }

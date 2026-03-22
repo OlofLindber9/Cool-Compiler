@@ -10,11 +10,11 @@ bool tt () {
 }
 
 int main () {
-  bool t = true;
-  bool f = false;
-  bool silent1 = f && ff();  // nothing
-  bool silent2 = t || ff();  // nothing
-  bool noisy1  = t && tt();  // 1
-  bool noisy2  = f || tt();  // 1
+  let bool t = true;
+  let bool f = false;
+  let bool silent1 = f && ff();  // nothing
+  let bool silent2 = t || ff();  // nothing
+  let bool noisy1  = t && tt();  // 1
+  let bool noisy2  = f || tt();  // 1
   return 0;
 }

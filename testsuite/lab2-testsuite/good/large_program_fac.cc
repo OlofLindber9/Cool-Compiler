@@ -2,8 +2,8 @@
 #include "../prelude.cc"
 
 int fac(int a) {
-  int r;
-  int n;
+  let int r;
+  let int n;
 
   r = 1;
   n = a;
@@ -16,7 +16,7 @@ int fac(int a) {
 
 int rfac(int n)
 {
-  int f ;
+  let int f ;
   if (n == 0)
     f = 1;
   else
@@ -26,7 +26,7 @@ int rfac(int n)
 
 int mfac(int n)
 {
-  int f ;
+  let int f ;
   if (n == 0)
     f = 1;
   else
@@ -36,7 +36,7 @@ int mfac(int n)
 
 int nfac(int n)
 {
-  int f ;
+  let int f ;
   if (n != 0)
     f = mfac(n-1) * n;
   else
@@ -45,13 +45,13 @@ int nfac(int n)
 }
 
 int ifac2f(int l, int h) {
-  int f ;
+  let int f ;
   if (l == h)
     f = l;
   else if (l > h)
     f = 1;
   else {
-    int m;
+    let int m;
     m = (l+h) / 2;
     f = ifac2f(l,m) * ifac2f(m+1,h);
   }

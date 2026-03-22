@@ -1,5 +1,5 @@
 int main() {
-  int x = 0;
-  bool x = false;
+  let int x = 0;
+  let bool x = false;
   return 0;
 }

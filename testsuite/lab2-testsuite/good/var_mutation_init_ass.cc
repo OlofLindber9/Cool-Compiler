@@ -1,6 +1,6 @@
 int main() {
-  int a;
-  int b = a = 0;
+  let int a;
+  let int b = a = 0;
 
   ++b;
   printInt(a);

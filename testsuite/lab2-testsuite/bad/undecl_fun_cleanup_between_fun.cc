@@ -3,7 +3,7 @@ void foo(int x) {
 }
 
 void foo1() {
-  int x;
+  let int x;
 }
 
 int foo2() {

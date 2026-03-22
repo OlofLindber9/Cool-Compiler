@@ -1,19 +1,19 @@
 int main() {
-  int i = 78;
+  let int i = 78;
   {
-    int i = 1;
+    let int i = 1;
     printInt(i);
   }
   printInt(i);
   while (i > 76) {
     i--;
     printInt(i);
-   int i = 7;
+   let int i = 7;
    printInt(i);
   }
   printInt(i);
   if (i > 4) {
-    int i = 4;
+    let int i = 4;
     printInt(i);
   } else {
 

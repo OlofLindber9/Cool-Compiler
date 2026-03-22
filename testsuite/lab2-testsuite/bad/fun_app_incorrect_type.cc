@@ -1,5 +1,5 @@
 int main() {
-  int x = foo(11, true);
+  let int x = foo(11, true);
   return 22;
 }
 

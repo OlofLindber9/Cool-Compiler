@@ -9,8 +9,8 @@ void printBool(bool b) {
 }
 
 int main() {
-    double z = 9.3;
-    double w = 5.1;
+    let double z = 9.3;
+    let double w = 5.1;
     printBool(z+w > z-w);
     printBool(z/w <= z*w);
     return 0;
