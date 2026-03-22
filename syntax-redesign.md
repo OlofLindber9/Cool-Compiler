@@ -20,7 +20,7 @@
 
 | Concept | Current Syntax | New Syntax |
 |---|---|---|
-| Boolean type | `bool` | |
+| Boolean type | `bool` |`ohio`|
 | Integer type | `int` |`chad`|
 | Double/float type | `double` | `gigachad`|
 | Void type | `void` | `skibidi` |
